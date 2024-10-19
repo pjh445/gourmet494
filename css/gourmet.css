@@ -5,33 +5,39 @@ html,body {font:10pt/180% "맑은 고딕","돋움"; color:#333; }
 img {max-width:100%; display:block;}
 a {text-decoration:none;}
 
-#layout {width:1200px; /*position:absolute; margin-left:calc((100% - 1200px) / 2);*/ margin:auto;}
+#layout {width:1200px; margin:auto; position:relative; }
 
 /*상단*/
-header {position:absolute; width:1200px; height:100px; top:0; z-index:1; background:rgba(0,0,0, 0.85);}
-header>div {display:flex; padding-top:20px;  align-items:flex-end; background:black; height:110px;}
+header {max-width:1200px; height:100px; background:black; display:flex; padding-top:20px; height:110px; }
 header h1 {flex:1;}
 header h1 a {display:block;}
 header h1 img {transform:translate(40px,0px); padding-bottom:15px;}
 
 /*주메뉴*/
-header ul {flex:1.5; list-style:none; display:flex; padding-bottom:15px;}
+header ul {flex:1.5; list-style:none; display:flex; align-items:flex-end; padding-bottom:13px;}
 header li {position:relative;}
 header li:nth-child(1) {flex:1.5;}
 header li:nth-child(2) {flex:1;}
 header li:nth-child(3) {flex:1.2;}
 header li>a {color:white; display:block; text-align:center; padding:8px; font-weight:bold; font-size:1.2rem;}
-header li>a:hover, header li>a.active {color:red;}
+header li>a:hover, header li>a.act {color:red;}
 
 /*부메뉴*/
-header nav {position:absolute; width:100%; padding-top:3px; display:none;}
-header nav a {color:white; display:block; text-decoration:none; font-weight:bold; text-align:center;padding:5px; padding-bottom:7px;}
+header nav {position:absolute; width:100%; padding-top:3px; z-index:2; height:0; overflow:hidden; transition:height 0.5s;}
+header nav.act {height:150px;}
+
+header nav a {color:white; display:block; text-decoration:none; text-align:center; padding:5px; padding-bottom:7px;}
 header nav a:hover {color:gold; }
 
-/*슬라이드*/
-#visual {position:relative; height:300px; margin-top:150px;}
-#visual>a {position:absolute; width:100%; height:300px;}
+/*검정바탕색*/
+#subBg {position:absolute; width:100%; background:rgba(0,0,0,0.9); z-index:1; height:0; transition:height 0.5s;}
+#subBg.act {height:150px; }
 
+/***********************************************************/
+/*슬라이드*/
+#visual {position:relative; height:300px; margin-top:40px; }
+#visual a {position:absolute; width:100%; height:300px; display:block; transition:opacity 0.5s;}
+#visual img {width:100%;}
 
 /*메인*/
 main {height:200px; display:flex; padding-top:15px; margin:40px 0;}
@@ -72,9 +78,3 @@ footer select {padding:4px 8px 2px 8px;}
 #black h3 {background:black; color:white; padding:5px; text-align:center; margin-bottom:10px;}
 #black img {width:100%; margin-bottom:30px;}
 #black input {float:right; margin-top:-30px; padding:3px 10px;}
-
-
-
-
-
-

@@ -1,63 +1,81 @@
-$(document).ready(function(){
-	
-	//상단메뉴: 주메뉴에 마우스갖다대면
-	$("header li>a").on("mouseenter click", function(){
-		
-		//주메뉴 활성화유지
-		$("header li>a").removeClass("active");
-		$(this).addClass("active");
-		
-		//부메뉴
-		$("header").stop().animate({height:"260px"});
-		$("header nav").css("display", "block");
-	});
-	//상단메뉴: 주메뉴+부메뉴에서 마우스벗어나면
-	$("header ul").mouseleave(function(){
-		$("header li>a").removeClass("active");
-		$("header").stop().animate({height:"110px"});
-		$("header nav").css("display", "none");
-	});
-	//상단메뉴: 탭키로 마지막 부메뉴를 떠날때 (blur => 포커스를 잃을때)
-	$("header li:last-child>nav>a:last").blur(function(){
-		$("header li>a").removeClass("active");
-		$("header").stop().animate({height:"110px"});
-		$("header nav").css("display", "none");
-	});
-	
-	//슬라이드이미지(페이드기법)
-	var x = setInterval(fade,3000);
-	var i = 2;
-	function fade(){
-		if(i==0 /*i가 0과 같다면*/){
-			i=2; /*i에 2를 넣어라 => i의 값은 2가 된다*/
-			$("#visual>a").fadeIn(); /*부드럽게 display:block;*/
-		} else {
-			$("#visual>a").eq(i).fadeOut("slow");/*부드럽게 display:none;*/
-			i--; /*i=i-1; i값에서 1을빼라*/
-		}
-	}
-	
-	//공지사항 팝업
-	$(".pop").click(function(){
-		$("#black").fadeIn();
-	});
-	//공지사항 [닫기]버튼 클릭
-	$("#black input").click(function(){
-		$("#black").fadeOut();
-	});
-	//공지사항 닫기 [esc]키 클릭
-	$(document).keydown(function(e) {
-		//enter는 13번, esc키는 27번
-		if ( e.keyCode == 27 || e.which == 27 ) {
-			$("#black").fadeOut();
-		}
-	}); 
+document.addEventListener("DOMContentLoaded", function() {
+    // 상단메뉴
+    const headerUl = document.querySelector("header ul");
+    const mainMenu = document.querySelectorAll('header li>a');
+    const subMenu = document.querySelectorAll('header nav');
+    const subBg = document.getElementById('subBg');
 
-	
-});//end
+    // 메뉴 hover 이벤트
+    mainMenu.forEach( j => {
 
+        j.addEventListener("mouseenter", () => {
+            mainMenu.forEach( j  => j.classList.remove('act') );
+            j.classList.add('act');
+        });
+    });    
 
+    headerUl.addEventListener( "mouseenter", () => {
 
+        subMenu.forEach( i => {
+            i.classList.add('act');
+            subBg.classList.add('act');
+        });
+    });    
 
+    subMenu.forEach( i => {
+        i.previousElementSibling.classList.remove('act');
 
+        i.addEventListener("mouseenter", () => {
 
+            mainMenu.forEach( j => j.classList.remove('act') );
+            i.previousElementSibling.classList.add('act');
+        });
+    });
+
+    headerUl.addEventListener("mouseleave", () => {
+
+        subMenu.forEach(i => {
+
+            i.classList.remove('act');
+            subBg.classList.remove('act');
+        });
+
+        mainMenu.forEach(j => j.classList.remove('act'));
+    });
+
+    /***************************/    
+    // 슬라이드 이미지(페이드 기법)  
+    const visual_a = document.querySelectorAll("#visual a");
+    let z = 0;
+
+    const fade = () => {
+        visual_a.forEach( i => {
+            i.style.opacity = 0;   
+        });
+        z = (z + 1) % 3 ; 
+        visual_a[z].style.opacity = 1;
+    };
+    
+    setInterval(fade, 2500);  
+
+    /****************************/
+    // 공지사항 팝업
+    const popButton = document.querySelector(".pop");
+    const blackOverlay = document.getElementById("black");
+    const closeButton = document.querySelector("#black input");
+
+    popButton.addEventListener("click", () => {
+        blackOverlay.style.display = "block";
+    });
+
+    closeButton.addEventListener("click", () => {
+        blackOverlay.style.display = "none";
+    });
+
+    // 공지사항 닫기 [esc] 키 클릭
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+            blackOverlay.style.display = "none";
+        }
+    });
+});
