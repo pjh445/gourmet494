@@ -1,0 +1,195 @@
+@charset "utf-8";
+
+/*공통*/
+* {
+	margin:0; padding:0; box-sizing:border-box;
+}
+html,body {
+	font:10pt/180%  'Nanum Gothic Coding', cursive;
+	color:#222328; 
+}
+img {
+	display:block; max-width:100%;
+}
+a {
+	text-decoration:none; color:#222328;
+}
+
+
+#layout {
+	width:1200px;	display:flex; overflow:hidden;
+}
+
+
+/*왼쪽(로고+메뉴)*/
+#left {
+	flex-basis:300px;
+}
+
+/*왼쪽상단 로고*/
+a#logo {
+	display:block; padding:20px;
+	text-align:center;
+}
+a#logo img {
+	display:inline; width:150px;
+}
+
+/*오른쪽(슬라이드+메인+하단)*/
+#right {
+	flex-basis:900px; overflow:hidden;
+}
+
+/*메인메뉴(주메뉴)*/
+ul li{
+	margin-bottom:1px;	
+}
+
+.mainMenu {
+	display:block; background:#e08a9b;	
+	font-size:1.1rem; font-weight:bold;
+	color:white; padding:15px 30px;	
+}
+
+/*메인메뉴(주메뉴)-- 호버 활성화*/
+ul li:hover .mainMenu , 
+.mainMenu:hover{
+	background:#db3d84; color:white;
+}
+
+/*하위메뉴*/
+.subMenu {
+	background:#e9f2c1; display:none;
+}
+.subMenu a{
+	display:block; padding:10px 30px;
+}
+/*하위메뉴 -- 호버 활성화*/
+.subMenu a:hover {
+	background:#a0c322; color:white;
+}
+
+
+/*슬라이드*/
+#slide{
+	  width:2700px; position:relative;
+		display:flex;
+}
+#slide a{
+	
+}
+#slide a img {
+	width:900px; height:400px;
+}
+
+
+/*메인 (공지사항+갤러리 / 배너/ 바로가기)*/
+main {	 
+	 height:250px; display:flex;
+	 padding-top:40px; padding-left:10px;
+}
+
+
+
+/****** 공지사항+갤러리 ******/
+
+/*제목버튼 아래 가로줄*/
+main hr {
+	height:1pt;
+	background:#436014; border:none;	
+}
+
+/**************/
+h2 {
+	display:inline-block;
+	background:#c3d680;	
+	border-top-left-radius:6px;
+	border-top-right-radius:6px;		
+	border:1px solid #436014;
+	border-bottom:none;
+	padding:2px 6px 2px 6px;
+	transform:translateY(0px);
+}
+h2 button {
+	cursor:pointer; color:#000; background:none; border:none;
+}
+
+/*공지사항*/
+#notice {
+	flex:1;
+}
+#notice ul {
+	list-style-position:inside;	
+	padding-top:10px; padding-left:5px;	
+}
+#notice li span {
+	float:right;
+}
+#notice a:hover {
+	text-decoration:underline; color:#db3d84;
+}
+
+/****************/
+/*공지시항  -- 팝업*/
+#popup {
+	position:fixed; z-index:1;
+	background:white;
+	box-shadow:3px 3px 6px rgba(0,0,0, 0.7);
+	width:500px;
+	top:100px; left:320px;
+	list-style:none; border-radius:10px;
+	padding:30px; display:none;
+}
+#popup h3 {
+	display:none;
+}
+#popup button {
+	float:right; padding:2px 5px 4px 5px;
+}
+
+
+/*갤러리*/
+#gallery {
+	flex:1; margin:0 30px;
+}
+
+#gallery>div>div {
+	display:flex;  
+}
+#gallery div a{
+	margin:5px;
+}
+
+
+/* 배너 */
+#banner {flex:0.9; padding-top:30px;}
+#banner h2 {display:none;}
+#banner img {border-radius:5px;}
+
+
+/*하단*/
+footer {
+	width:1200px; display:flex; align-items:center;
+	border:2px solid #ccc;	
+}
+footer> a {
+	flex-basis:300px;
+}
+footer> a img {
+	display:block; width:150px; margin:10px auto;	
+}
+footer> div {flex-basis:900px; border-left:2px dashed #ccc;}
+footer> div a {padding:7px; padding-right:10px;}
+footer> div a:hover {
+	text-decoration:underline;color:black;
+}
+footer nav {
+	height:50px; 
+	padding-left:20px; padding-top:10px;
+}
+footer p  {
+	border-top:2px dashed #ccc; 
+	height:50px; 
+	height:50px; 
+	padding-left:20px; padding-top:13px;
+}
