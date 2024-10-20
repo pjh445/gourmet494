@@ -6,41 +6,38 @@ document.addEventListener("DOMContentLoaded", function() {
     const subBg = document.getElementById('subBg');
 
     // 메뉴 hover 이벤트
+
+    const remove = () => {
+        mainMenu.forEach( i  => i.classList.remove('act') );
+    }
+ 
+
     mainMenu.forEach( j => {
 
         j.addEventListener("mouseenter", () => {
-            mainMenu.forEach( j  => j.classList.remove('act') );
+            remove();
             j.classList.add('act');
         });
     });    
 
     headerUl.addEventListener( "mouseenter", () => {
-
-        subMenu.forEach( i => {
-            i.classList.add('act');
-            subBg.classList.add('act');
-        });
+        subMenu.forEach( i =>   i.classList.add('act') );
+        subBg.classList.add('act');
     });    
 
     subMenu.forEach( i => {
         i.previousElementSibling.classList.remove('act');
 
         i.addEventListener("mouseenter", () => {
-
-            mainMenu.forEach( j => j.classList.remove('act') );
+            remove();
             i.previousElementSibling.classList.add('act');
         });
     });
 
     headerUl.addEventListener("mouseleave", () => {
-
-        subMenu.forEach(i => {
-
-            i.classList.remove('act');
-            subBg.classList.remove('act');
-        });
-
-        mainMenu.forEach(j => j.classList.remove('act'));
+        remove();
+        subMenu.forEach( i =>  i.classList.remove('act'));        
+        subBg.classList.remove('act');
     });
 
     /***************************/    
